@@ -1,0 +1,85 @@
+
+.dashboardContainer {
+  min-height: 100vh;
+}
+
+.mainContent {
+  padding: 1.5rem;
+  transition: padding-left 0.3s ease;
+}
+
+.mainContent.collapsed {
+  padding-left: 0.5rem;
+}
+
+.kpiCard {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpiCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.eventCard {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.eventCard:hover {
+  border-color: #0d6efd;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chartPlaceholder {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.userGreeting {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.brandIcon {
+  color: #0d6efd;
+}
+
+.statusBadge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.actionButtons {
+  gap: 0.5rem;
+}
+
+.developmentPlaceholder {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.developmentIcon {
+  font-size: 3rem;
+  color: #6c757d;
+}

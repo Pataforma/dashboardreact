@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import styles from './EventManagement.module.css';
 
 const EventManagement = ({ event, onBack }) => {
   const [activeTab, setActiveTab] = useState('checkin');
@@ -30,7 +30,7 @@ const EventManagement = ({ event, onBack }) => {
   const renderCheckInTool = () => (
     <div className="row">
       <div className="col-md-8">
-        <div className="card">
+        <div className={`card ${styles.checkInCard}`}>
           <div className="card-header">
             <h6 className="mb-0">
               <i className="bi bi-qr-code-scan me-2"></i>Check-in Tool
@@ -38,8 +38,8 @@ const EventManagement = ({ event, onBack }) => {
           </div>
           <div className="card-body">
             {!qrScanner ? (
-              <div className="text-center py-4">
-                <i className="bi bi-qr-code" style={{ fontSize: '4rem', color: '#6c757d' }}></i>
+              <div className={styles.qrScanner}>
+                <i className={`bi bi-qr-code ${styles.qrIcon}`}></i>
                 <h5 className="mt-3">Scanner QR Code</h5>
                 <p className="text-muted mb-3">
                   Escaneie o QR Code do ingresso do participante para fazer o check-in
@@ -52,17 +52,15 @@ const EventManagement = ({ event, onBack }) => {
                 </button>
               </div>
             ) : (
-              <div className="text-center py-4">
-                <div className="border rounded p-4 bg-light">
-                  <i className="bi bi-camera-video" style={{ fontSize: '3rem', color: '#28a745' }}></i>
-                  <p className="mt-2 mb-3">Scanner ativo - Aponte para o QR Code</p>
-                  <button 
-                    className="btn btn-outline-secondary"
-                    onClick={() => setQrScanner(false)}
-                  >
-                    Fechar Scanner
-                  </button>
-                </div>
+              <div className={`${styles.qrScanner} ${styles.qrScannerActive}`}>
+                <i className={`bi bi-camera-video ${styles.qrIconActive}`}></i>
+                <p className="mt-2 mb-3">Scanner ativo - Aponte para o QR Code</p>
+                <button 
+                  className="btn btn-outline-secondary"
+                  onClick={() => setQrScanner(false)}
+                >
+                  Fechar Scanner
+                </button>
                 <div className="mt-3">
                   <small className="text-muted">
                     Modo simulação - Em produção, a câmera seria ativada aqui
@@ -77,7 +75,7 @@ const EventManagement = ({ event, onBack }) => {
               <div className="input-group">
                 <input 
                   type="text" 
-                  className="form-control" 
+                  className={`form-control ${styles.searchInput}`}
                   placeholder="Digite o nome ou email do participante"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -90,14 +88,14 @@ const EventManagement = ({ event, onBack }) => {
               {searchTerm && (
                 <div className="mt-2">
                   {filteredAttendees.slice(0, 3).map(attendee => (
-                    <div key={attendee.id} className="d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div key={attendee.id} className={`d-flex justify-content-between align-items-center ${styles.attendeeItem}`}>
                       <div>
                         <strong>{attendee.name}</strong>
                         <br />
                         <small className="text-muted">{attendee.email}</small>
                       </div>
                       <button 
-                        className={`btn btn-sm ${attendee.checkedIn ? 'btn-success' : 'btn-outline-primary'}`}
+                        className={`btn btn-sm ${attendee.checkedIn ? 'btn-success' : 'btn-outline-primary'} ${styles.checkInButton}`}
                         onClick={() => handleCheckIn(attendee.id)}
                         disabled={attendee.checkedIn}
                       >
@@ -121,15 +119,15 @@ const EventManagement = ({ event, onBack }) => {
       </div>
       
       <div className="col-md-4">
-        <div className="card">
+        <div className={`card ${styles.statsCard}`}>
           <div className="card-header">
             <h6 className="mb-0">Estatísticas em Tempo Real</h6>
           </div>
           <div className="card-body">
             <div className="text-center mb-4">
-              <div className="progress mb-2" style={{ height: '25px' }}>
+              <div className={`progress mb-2 ${styles.progressBar}`}>
                 <div 
-                  className="progress-bar bg-success" 
+                  className={`progress-bar ${styles.progressFill}`}
                   style={{ width: `${(checkedInCount / totalAttendees) * 100}%` }}
                 >
                   {Math.round((checkedInCount / totalAttendees) * 100)}%
@@ -160,8 +158,8 @@ const EventManagement = ({ event, onBack }) => {
           </div>
           <div className="card-body">
             {attendees.filter(a => a.checkedIn).slice(-3).map(attendee => (
-              <div key={attendee.id} className="d-flex align-items-center mb-2">
-                <div className="bg-success rounded-circle me-2" style={{ width: '8px', height: '8px' }}></div>
+              <div key={attendee.id} className={`d-flex align-items-center ${styles.recentCheckIn}`}>
+                <div className={styles.checkedInIndicator}></div>
                 <div className="flex-grow-1">
                   <small className="fw-bold">{attendee.name}</small>
                   <br />
@@ -184,7 +182,7 @@ const EventManagement = ({ event, onBack }) => {
         <div className="d-flex gap-2">
           <input 
             type="text" 
-            className="form-control form-control-sm" 
+            className={`form-control form-control-sm ${styles.searchInput}`}
             placeholder="Buscar participante..."
             style={{ width: '250px' }}
             value={searchTerm}
@@ -197,7 +195,7 @@ const EventManagement = ({ event, onBack }) => {
       </div>
       <div className="card-body">
         <div className="table-responsive">
-          <table className="table table-hover">
+          <table className={`table table-hover ${styles.tableHover}`}>
             <thead>
               <tr>
                 <th>Nome</th>
@@ -216,11 +214,11 @@ const EventManagement = ({ event, onBack }) => {
                   <td>{attendee.phone}</td>
                   <td>
                     {attendee.checkedIn ? (
-                      <span className="badge bg-success">
+                      <span className={`badge bg-success ${styles.statusBadge}`}>
                         <i className="bi bi-check-circle me-1"></i>Presente
                       </span>
                     ) : (
-                      <span className="badge bg-warning">
+                      <span className={`badge bg-warning ${styles.statusBadge}`}>
                         <i className="bi bi-clock me-1"></i>Aguardando
                       </span>
                     )}
@@ -234,10 +232,10 @@ const EventManagement = ({ event, onBack }) => {
                   </td>
                   <td>
                     <div className="btn-group btn-group-sm">
-                      <button className="btn btn-outline-primary" title="Enviar mensagem">
+                      <button className={`btn btn-outline-primary ${styles.actionButton}`} title="Enviar mensagem">
                         <i className="bi bi-envelope"></i>
                       </button>
-                      <button className="btn btn-outline-info" title="Ver detalhes">
+                      <button className={`btn btn-outline-info ${styles.actionButton}`} title="Ver detalhes">
                         <i className="bi bi-eye"></i>
                       </button>
                     </div>
@@ -253,11 +251,11 @@ const EventManagement = ({ event, onBack }) => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className={`d-flex justify-content-between align-items-center mb-4 ${styles.eventHeader}`}>
         <div>
-          <h4>
+          <h4 className={styles.eventTitle}>
             <button 
-              className="btn btn-outline-secondary me-3"
+              className={`btn ${styles.backButton} me-3`}
               onClick={onBack}
             >
               <i className="bi bi-arrow-left"></i>
@@ -269,7 +267,7 @@ const EventManagement = ({ event, onBack }) => {
             <i className="bi bi-people ms-2 me-1"></i>{totalAttendees} inscritos
           </p>
         </div>
-        <div className="btn-group">
+        <div className={`btn-group ${styles.eventActions}`}>
           <button className="btn btn-outline-primary">
             <i className="bi bi-share me-1"></i>Compartilhar
           </button>
@@ -280,7 +278,7 @@ const EventManagement = ({ event, onBack }) => {
       </div>
 
       {/* Navigation Tabs */}
-      <ul className="nav nav-tabs mb-4">
+      <ul className={`nav nav-tabs mb-4 ${styles.navTabs}`}>
         <li className="nav-item">
           <button 
             className={`nav-link ${activeTab === 'checkin' ? 'active' : ''}`}

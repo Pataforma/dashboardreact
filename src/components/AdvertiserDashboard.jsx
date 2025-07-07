@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import AppSidebar from './common/AppSidebar';
 import CreateEventForm from './advertiser/CreateEventForm';
 import EventManagement from './advertiser/EventManagement';
 import PublicEventPage from './advertiser/PublicEventPage';
 import { advertiserData } from '../data/mockData';
+import styles from './AdvertiserDashboard.module.css';
 
 const AdvertiserDashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -35,7 +37,7 @@ const AdvertiserDashboard = () => {
             <div className="card-body">
               <div className="row mb-4">
                 <div className="col-md-6">
-                  <div className="card bg-light">
+                  <div className={`card bg-light ${styles.kpiCard}`}>
                     <div className="card-body text-center">
                       <h3 className="text-primary">{selectedEvent.views}</h3>
                       <p className="mb-0">Visualizações</p>
@@ -43,7 +45,7 @@ const AdvertiserDashboard = () => {
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="card bg-light">
+                  <div className={`card bg-light ${styles.kpiCard}`}>
                     <div className="card-body text-center">
                       <h3 className="text-success">{selectedEvent.registrations}</h3>
                       <p className="mb-0">Inscrições</p>
@@ -52,7 +54,7 @@ const AdvertiserDashboard = () => {
                 </div>
               </div>
               
-              <div className="chart-placeholder bg-light rounded p-4 text-center">
+              <div className={styles.chartPlaceholder}>
                 <i className="bi bi-bar-chart text-muted" style={{ fontSize: '3rem' }}></i>
                 <p className="text-muted mt-2">Gráfico de Engajamento</p>
               </div>
@@ -85,20 +87,20 @@ const AdvertiserDashboard = () => {
   };
 
   const renderDashboard = () => (
-    <div className="fade-in">
+    <div className={styles.fadeIn}>
       {/* KPIs Row */}
       <div className="row mb-4">
         <div className="col-md-3 mb-3">
-          <div className="card">
+          <div className={`card ${styles.kpiCard}`}>
             <div className="card-body text-center">
-              <i className="bi bi-calendar-event text-primary" style={{ fontSize: '2.5rem' }}></i>
+              <i className={`bi bi-calendar-event ${styles.brandIcon}`} style={{ fontSize: '2.5rem' }}></i>
               <h3 className="mt-2">12</h3>
               <p className="text-muted mb-0">Eventos Ativos</p>
             </div>
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card">
+          <div className={`card ${styles.kpiCard}`}>
             <div className="card-body text-center">
               <i className="bi bi-people text-success" style={{ fontSize: '2.5rem' }}></i>
               <h3 className="mt-2">1.847</h3>
@@ -107,7 +109,7 @@ const AdvertiserDashboard = () => {
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card">
+          <div className={`card ${styles.kpiCard}`}>
             <div className="card-body text-center">
               <i className="bi bi-heart text-danger" style={{ fontSize: '2.5rem' }}></i>
               <h3 className="mt-2">R$ 12.450</h3>
@@ -116,7 +118,7 @@ const AdvertiserDashboard = () => {
           </div>
         </div>
         <div className="col-md-3 mb-3">
-          <div className="card">
+          <div className={`card ${styles.kpiCard}`}>
             <div className="card-body text-center">
               <i className="bi bi-eye text-warning" style={{ fontSize: '2.5rem' }}></i>
               <h3 className="mt-2">15.234</h3>
@@ -146,17 +148,17 @@ const AdvertiserDashboard = () => {
               <div className="row">
                 {advertiserData.events.slice(0, 3).map(event => (
                   <div key={event.id} className="col-md-4 mb-3">
-                    <div className="card">
+                    <div className={`card ${styles.eventCard}`}>
                       <div className="card-body">
                         <h6 className="card-title">{event.title}</h6>
                         <p className="card-text text-muted small">
                           <i className="bi bi-calendar me-1"></i>{event.date}
                         </p>
                         <div className="d-flex justify-content-between align-items-center">
-                          <span className={`badge ${event.status === 'Publicado' ? 'bg-success' : 'bg-warning'}`}>
+                          <span className={`badge ${event.status === 'Publicado' ? 'bg-success' : 'bg-warning'} ${styles.statusBadge}`}>
                             {event.status}
                           </span>
-                          <div className="btn-group btn-group-sm">
+                          <div className={`btn-group btn-group-sm ${styles.actionButtons}`}>
                             <button 
                               className="btn btn-outline-primary"
                               onClick={() => {
@@ -224,14 +226,14 @@ const AdvertiserDashboard = () => {
                   <td>
                     <span className={`badge ${
                       event.status === 'Publicado' ? 'bg-success' : 'bg-warning'
-                    }`}>
+                    } ${styles.statusBadge}`}>
                       {event.status}
                     </span>
                   </td>
                   <td>{event.registrations}</td>
                   <td>R$ {(event.registrations * 15).toLocaleString('pt-BR')}</td>
                   <td>
-                    <div className="btn-group btn-group-sm">
+                    <div className={`btn-group btn-group-sm ${styles.actionButtons}`}>
                       <button 
                         className="btn btn-outline-primary"
                         onClick={() => {
@@ -334,16 +336,16 @@ const AdvertiserDashboard = () => {
         return renderEventsList();
       case 'analytics':
         return selectedEvent ? renderEventAnalytics() : (
-          <div className="text-center py-5">
-            <i className="bi bi-graph-up text-muted" style={{ fontSize: '3rem' }}></i>
+          <div className={`text-center py-5 ${styles.developmentPlaceholder}`}>
+            <i className={`bi bi-graph-up ${styles.developmentIcon}`}></i>
             <h4 className="mt-3 text-muted">Selecione um Evento</h4>
             <p className="text-muted">Escolha um evento na lista para ver as análises detalhadas.</p>
           </div>
         );
       default:
         return (
-          <div className="text-center py-5">
-            <i className="bi bi-gear text-muted" style={{ fontSize: '3rem' }}></i>
+          <div className={`text-center py-5 ${styles.developmentPlaceholder}`}>
+            <i className={`bi bi-gear ${styles.developmentIcon}`}></i>
             <h4 className="mt-3 text-muted">Seção em Desenvolvimento</h4>
             <p className="text-muted">Esta funcionalidade será implementada em breve.</p>
           </div>
@@ -352,7 +354,7 @@ const AdvertiserDashboard = () => {
   };
 
   return (
-    <div className="d-flex" style={{ height: '100vh' }}>
+    <div className={`d-flex ${styles.dashboardContainer}`}>
       <AppSidebar
         items={sidebarItems}
         activeItem={activeSection}
@@ -376,11 +378,11 @@ const AdvertiserDashboard = () => {
         }}
       />
       
-      <div className={`main-content flex-grow-1 ${sidebarCollapsed ? 'ps-2' : 'ps-3'}`}>
+      <div className={`${styles.mainContent} flex-grow-1 ${sidebarCollapsed ? styles.collapsed : ''}`}>
         {!managingEvent && !viewingPublicEvent && !showCreateForm && (
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2>
-              <i className="bi bi-megaphone me-2 text-primary"></i>
+            <h2 className={styles.userGreeting}>
+              <i className={`bi bi-megaphone me-2 ${styles.brandIcon}`}></i>
               Olá, {advertiserData.profile.name}!
             </h2>
           </div>

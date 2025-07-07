@@ -1,0 +1,176 @@
+
+.eventHeader {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.eventTitle {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.backButton {
+  border: 1px solid #6c757d;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+.eventActions {
+  gap: 0.5rem;
+}
+
+.navTabs .nav-link {
+  border: none;
+  color: #6c757d;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.navTabs .nav-link.active {
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 6px;
+}
+
+.navTabs .nav-link:hover:not(.active) {
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  border-radius: 6px;
+}
+
+.checkInCard {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.qrScanner {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px dashed #ced4da;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.qrScanner:hover {
+  border-color: #0d6efd;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+}
+
+.qrScannerActive {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-color: #28a745;
+}
+
+.qrIcon {
+  color: #6c757d;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.qrIconActive {
+  color: #28a745;
+  font-size: 3rem;
+}
+
+.statsCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progressBar {
+  height: 25px;
+  border-radius: 12px;
+  background-color: #e9ecef;
+}
+
+.progressFill {
+  border-radius: 12px;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendeeItem {
+  border-bottom: 1px solid #f8f9fa;
+  padding: 0.75rem 0;
+}
+
+.attendeeItem:last-child {
+  border-bottom: none;
+}
+
+.attendeeItem:hover {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin: 0 -0.75rem;
+}
+
+.checkInButton {
+  transition: all 0.2s ease;
+}
+
+.checkInButton:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.checkedInIndicator {
+  width: 8px;
+  height: 8px;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.recentCheckIn {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.recentCheckIn:last-child {
+  border-bottom: none;
+}
+
+.tableHover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+.statusBadge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.actionButton {
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+}
+
+.searchInput {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}

@@ -1,28 +1,29 @@
 
 import React from 'react';
+import styles from './Sidebar.module.css';
 
 const Sidebar = ({ items, activeItem, onItemClick }) => {
   return (
-    <div className="sidebar p-3">
+    <div className={`${styles.sidebar} p-3`}>
       <div className="mb-4">
-        <h4 className="text-primary fw-bold">
-          <i className="bi bi-heart-fill me-2"></i>
+        <h4 className={styles.brandTitle}>
+          <i className={`bi bi-heart-fill me-2 ${styles.brandIcon}`}></i>
           Pataforma
         </h4>
       </div>
-      <nav className="nav flex-column">
+      <nav className={`nav flex-column ${styles.nav}`}>
         {items.map((item, index) => (
           <a
             key={index}
             href="#"
-            className={`nav-link ${activeItem === item.key ? 'active' : ''}`}
+            className={`${styles.navLink} ${activeItem === item.key ? styles.active : ''}`}
             onClick={(e) => {
               e.preventDefault();
               onItemClick(item.key);
             }}
           >
-            <i className={`bi ${item.icon} me-2`}></i>
-            {item.label}
+            <i className={`bi ${item.icon} ${styles.navIcon}`}></i>
+            <span className={styles.navText}>{item.label}</span>
           </a>
         ))}
       </nav>
